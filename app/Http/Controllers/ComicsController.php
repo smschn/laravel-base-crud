@@ -38,7 +38,13 @@ class ComicsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // accetta in ingresso (nella variabile $request) i dati provenienti dall'input presente nella view create.
+        // salvo in una variabile questi i dati in ingresso (cioè i dati sul fumetto da aggiungere).
+
+        $comicsData = $request->all(); // il metodo all serve per prendere tutti i dati presenti nella variabile.
+
+
+
     }
 
     /**
