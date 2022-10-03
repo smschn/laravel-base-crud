@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Comic; // importo il model per poter catturare i dati dalla tabella.
+
 use Illuminate\Http\Request;
 
 class ComicsController extends Controller
@@ -13,7 +15,9 @@ class ComicsController extends Controller
      */
     public function index()
     {
-        //
+        // catturo i dati dalla tabella
+        $comics = Comic::all();
+        return view('comics.index', compact('comics'));
     }
 
     /**

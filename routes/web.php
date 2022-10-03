@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('homepage');
 })->name('homepageV');
+
+// aggiungo tutte le routes per le operazioni CRUD (laravel gestisce tutto in automatico)
+Route::resource('comics', 'ComicsController');

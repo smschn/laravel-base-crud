@@ -4,6 +4,6 @@
 
 @section('content')
 <h1>
-    Sei sulla homepage
+    Benvenuto. Ti trovi nella homepage.
 </h1>
 @endsection
