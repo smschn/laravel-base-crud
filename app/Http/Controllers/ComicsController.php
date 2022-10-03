@@ -15,7 +15,7 @@ class ComicsController extends Controller
      */
     public function index()
     {
-        // catturo i dati dalla tabella
+        // catturo tutti i dati dalla tabella, li invio alla view 'index'.
         $comics = Comic::all();
         return view('comics.index', compact('comics'));
     }
@@ -27,7 +27,7 @@ class ComicsController extends Controller
      */
     public function create()
     {
-        //
+        return view('comics.create');
     }
 
     /**

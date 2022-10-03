@@ -4,9 +4,10 @@
 
 @section('content')
 
-    <h1>Ti trovi nella pagina index: qui c'è una lista di tutti i fumetti presenti in tabella.</h1>
+    <h1>Ti trovi nella pagina INDEX: qui c'è una lista di tutti i fumetti presenti in tabella.</h1>
 
-    <h2>Vai alla view CREATE (cliccami)</h2>
+    <!-- aggiungo un link alla view 'create', al cui interno ci sarà un form da completare per la creazione di un nuovo fumetto -->
+    <h2>>> <a href="{{route('comics.create')}}">Vai alla view 'CREATE' per creare un nuovo fumetto.</a> <<</h2>
     
     <!-- creo una tabella dove stampare i fumetti con un ciclo -->
     <table>
@@ -17,7 +18,7 @@
             <td>Pubblicazione</td>
         </tr>
 
-    <!-- ciclo i fumetti in ingresso -->
+    <!-- ciclo i fumetti in ingresso, stampandone alcune proprietà -->
     @foreach ($comics as $comic)
         <tr>
             <td>{{$comic['title']}}</td>
