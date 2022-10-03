@@ -41,10 +41,32 @@ class ComicsController extends Controller
         // accetta in ingresso (nella variabile $request) i dati provenienti dall'input presente nella view create.
         // salvo in una variabile questi i dati in ingresso (cioè i dati sul fumetto da aggiungere).
 
-        $comicsData = $request->all(); // il metodo all serve per prendere tutti i dati presenti nella variabile.
+        $comicData = $request->all(); // il metodo all serve per prendere tutti i dati presenti nella variabile.
 
+        $newComic = new Comic(); // istanzio un nuovo oggetto di tipo Model.
 
+        // alle proprietà del nuovo oggetto di classe Comic, assegno il valore contenuto in '$comicData', ottenuto dall'input nella view 'create'.
+        // '$comicData' è un array associativo: accedo alle sue proprietà con la normale sintassi php.
+        /*
+        $newComic->title = $comicData['title'];
+        $newComic->description = $comicData['description'];
+        $newComic->thumb = $comicData['thumb'];
+        $newComic->price = $comicData['price'];
+        $newComic->series = $comicData['series'];
+        $newComic->sale_date = $comicData['sale_date'];
+        $newComic->type = $comicData['type'];
+        */
 
+        // fill() automatizza l'assegnazione delle righe soprastanti.
+        // affinchè funzioni serve compilare '$fillable' nel model.
+        $newComic->fill($comicData);
+
+        // salvo l'oggetto appena creato nella tabella del database.
+        $newComic->save();
+
+        // 'store()' funziona con un parametro POST: accetta dati in ingresso, ma non ritorna un qualcosa.
+        // per questo, nella return, serve fare un redirect alla route di 'create'.
+        return redirect()->route('comics.create');
     }
 
     /**
