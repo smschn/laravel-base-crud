@@ -1,7 +1,7 @@
 <header>
     <nav>
         <ul>
-            <li>link</li>
+            <li><a href="{{route('homepageV')}}">Homepage</a></li>
             <li>link</li>
             <li>link</li>
             <li>link</li>

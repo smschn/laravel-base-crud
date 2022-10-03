@@ -3,5 +3,7 @@
 @section('page_title', 'Homepage')
 
 @section('content')
-homepage
+<h1>
+    Sei sulla homepage
+</h1>
 @endsection
