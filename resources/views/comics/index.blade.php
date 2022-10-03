@@ -24,6 +24,11 @@
             <td>{{$comic['title']}}</td>
             <td>{{$comic['price']}}</td>
             <td>{{$comic['sale_date']}}</td>
+            <!--
+                lego l'id del singolo fumetto ciclato all'uri della view 'show' usando la funzione 'route()'.
+                in automatico, si crea un uri del tipo: 'comics/(id_fumetto_ciclato)'.
+            -->
+            <td><a href="{{route('comics.show', ['comic' => $comic->id])}}">Mostra singolo fumetto</a></td>
         </tr>
     @endforeach
     

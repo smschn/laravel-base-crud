@@ -66,7 +66,7 @@ class ComicsController extends Controller
 
         // 'store()' funziona con un parametro POST: accetta dati in ingresso, ma non ritorna un qualcosa.
         // per questo, nella return, serve fare un redirect alla route di 'create'.
-        return redirect()->route('comics.create');
+        return redirect()->route('comics.index');
     }
 
     /**
@@ -77,7 +77,23 @@ class ComicsController extends Controller
      */
     public function show($id)
     {
-        //
+        // la funzione show() accetta come parametro in ingresso l'id del singolo fumetto.
+        // l'id viene catturato nella view 'index' attraverso una 'route'.
+        // l'id viene passato come parametro alla route 'comics.show'
+        // usando il metodo statico find() cerco il fumetto selezionato tramite il suo 'id' nella tabella del database.
+        // il metodo statico find() ritorna un singolo oggetto, NON una collection.
+        $chosenComic = Comic::find($id);
+
+        // se il fumetto esiste, ritorno la view 'comics.show' passando come parametro il fumetto trovato.
+        if ($chosenComic) {
+            return view('comics.show', compact('chosenComic'));
+        }
+
+        // se il fumetto NON esiste, ritorno una pagina con errore 404.
+        else {
+            abort(404); // abort accetta come parametro i codici errore: si possono usare tutti.
+        }
+
     }
 
     /**
