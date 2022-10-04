@@ -104,7 +104,12 @@ class ComicsController extends Controller
      */
     public function edit($id)
     {
-        //
+        // usando il metodo statico 'find()' e l'id' in ingresso nella funzione 'edit()', cerco l'oggetto fumetto presente nella tabella del database.
+        // lo salvo in una variabile.
+        $chosenComic = Comic::find($id);
+
+        // ritorno la view 'edit', passando come parametro il fumetto selezionato per la modifica.
+        return view('comics.edit', compact('chosenComic'));
     }
 
     /**

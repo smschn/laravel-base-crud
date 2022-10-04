@@ -13,7 +13,7 @@
     -->
     <form action="{{route('comics.store')}}" method="POST">
 
-        {{-- per funzionare, il from necessita di questo @csrf --}}
+        <!-- per funzionare, il form necessita di questo <csrf> -->
         @csrf
 
         <!--

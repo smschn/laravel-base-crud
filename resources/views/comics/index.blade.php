@@ -29,6 +29,8 @@
                 in automatico, si crea un uri del tipo: 'comics/(id_fumetto_ciclato)'.
             -->
             <td><a href="{{route('comics.show', ['comic' => $comic->id])}}">Mostra singolo fumetto</a></td>
+            <td><a href="{{route('comics.edit', ['comic' => $comic->id])}}">Modifica singolo fumetto</a></td>
+        
         </tr>
     @endforeach
     
