@@ -127,10 +127,17 @@ class ComicsController extends Controller
         $chosenComic = Comic::find($id);
 
         if ($chosenComic) {
+            // <request> = tutte le modifiche effettuate nei campi <input> nella view <edit> inviate tramite il <form>.
+            // richiamo tutti i campi\valori contenuti nella <request> con la proprietà ->all().
+            // salvo questi campi\valori in una variabile.
+            // tramite la proprietà ->update() assegno (aggiorno) i valori di ogni proprietà\colonna all'oggetto fumetto.
+            // salvo l'oggetto modificato nel database.
             $chosenComicUpdated = $request->all();
-            $chosenComic->update($chosenComicUpdated);
+            $chosenComic->update($chosenComicUpdated); // ->update() funziona come ->fill(): per funzionare si deve modificare la <$fillable> nel file del model
             $chosenComic->save();
 
+            // si fa una return di un redirect perché la funzione update() viene chiamata con un metodo POST (dal <form> nella view <edit>):
+            // il client (browser), di default, non si aspetta una risposta da questa funzione.
             return redirect()->route('comics.show', ['comic' => $chosenComic->id]);
         }
 
