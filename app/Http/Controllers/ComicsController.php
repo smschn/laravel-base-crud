@@ -161,7 +161,7 @@ class ComicsController extends Controller
         $chosenComic = Comic::find($id);
 
         // se il fumetto esiste nel database, lo cancello grazie alla metodo ->delete().
-        // essendo destroy() una funzione avviata tramite metodo POST, nella return imposto un redirect alla view <index> (altrimenti avrei una pagina bianca)
+        // essendo destroy() una funzione eseguita alla ricezione di dati tramite metodo POST, nella return imposto un redirect alla view <index> (altrimenti avrei una pagina bianca)
         if ($chosenComic) {
             $chosenComic->delete();
             return redirect()->route('comics.index');

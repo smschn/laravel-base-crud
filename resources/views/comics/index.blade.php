@@ -46,8 +46,16 @@
                     <!-- per funzionare, il <form> necessita di specificare il metodo <delete> -->
                     @method('DELETE')
 
-                    <!-- inserire un bottone da cliccare affinché parta l'invio in POST\DELETE -->
-                    <button type="submit">Elimina fumetto</button>
+                    <!--
+                        inserire un bottone da cliccare affinché parta l'invio in POST\DELETE.
+                        BONUS tramite l'attributo 'onclick':
+                        al click sul bottone, appare un messaggio che chiede conferma di eliminare il fumetto.
+                        Se clicco OK, ho come valore di return un booleano 'true' che avvia il click:
+                        quindi tramite POST viene inviato l'id del fumetto e viene avviata la funzione destroy() nel resources controller.
+                        Se clicco CANCELLA, ho come valore di return un booleano 'false' che NON esegue il click:
+                        quindi non parte la funzione destroy() nel resources controller e il fumetto NON viene cancellato.
+                    -->
+                    <button type="submit" onclick="return confirm('Sei sicuro di voler cancellare il fumetto?');">Elimina fumetto</button>
                 </form>
             </td>
         </tr>
