@@ -141,7 +141,7 @@ class ComicsController extends Controller
             return redirect()->route('comics.show', ['comic' => $chosenComic->id]);
         }
 
-        // se il fumetto non esiste nel database, mostra la pagina di errore 404 attraverso la funzione <aborth()>
+        // se il fumetto non esiste nel database, mostra la pagina di errore 404 attraverso la funzione <abort()>
         else {
             abort(404);
         }
@@ -156,6 +156,20 @@ class ComicsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // il metodo destroy() accetta come parametro l'id del fumetto scelto per la cancellazione, inviato dal <form> contenuto nella view <index>.
+        // recupero dalla tabella del database il fumetto con l'id ricevuto.
+        $chosenComic = Comic::find($id);
+
+        // se il fumetto esiste nel database, lo cancello grazie alla metodo ->delete().
+        // essendo destroy() una funzione avviata tramite metodo POST, nella return imposto un redirect alla view <index> (altrimenti avrei una pagina bianca)
+        if ($chosenComic) {
+            $chosenComic->delete();
+            return redirect()->route('comics.index');
+        }
+
+        // se il fumetto non esiste nel database, mostra la pagina di errore 404 attraverso la funzione <abort()>
+        else {
+            abort(404);
+        }
     }
 }
