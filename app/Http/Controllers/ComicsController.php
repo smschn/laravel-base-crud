@@ -104,7 +104,7 @@ class ComicsController extends Controller
      */
     public function edit($id)
     {
-        // usando il metodo statico 'find()' e l'id' in ingresso nella funzione 'edit()', cerco l'oggetto fumetto presente nella tabella del database.
+        // usando il metodo statico <::find()> e l'id in ingresso nella funzione <edit()>, cerco l'oggetto fumetto presente nella tabella del database.
         // lo salvo in una variabile.
         $chosenComic = Comic::find($id);
 
@@ -121,7 +121,24 @@ class ComicsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // <update()> accetta due parametri in ingresso: 
+        // l'id del fumetto selezionato per la modifica e il fumetto modificato nella view <edit> (inviato tramite il <form>).
+        // cerco il fumetto nel database con il metodo statico <::find()>.
+        $chosenComic = Comic::find($id);
+
+        if ($chosenComic) {
+            $chosenComicUpdated = $request->all();
+            $chosenComic->update($chosenComicUpdated);
+            $chosenComic->save();
+
+            return redirect()->route('comics.show', ['comic' => $chosenComic->id]);
+        }
+
+        // se il fumetto non esiste nel database, mostra la pagina di errore 404 attraverso la funzione <aborth()>
+        else {
+            abort(404);
+        }
+
     }
 
     /**
