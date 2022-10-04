@@ -30,7 +30,26 @@
             -->
             <td><a href="{{route('comics.show', ['comic' => $comic->id])}}">Mostra singolo fumetto</a></td>
             <td><a href="{{route('comics.edit', ['comic' => $comic->id])}}">Modifica singolo fumetto</a></td>
-        
+            <td>
+                <!--
+                    inserisco un <form> per eliminare il fumetto.
+                    NON posso usare il tag <a> (come sopra) perché esso funziona solo con il metodo GET,
+                    ma dovendo inviare al server l'id del fumetto da cancellare serve il metodo POST: quindi si usa un <form>.
+                    action = per eliminare un fumetto si inviano i dati alla route <comics.destroy> che esegue la funzione <destroy()> nel resources controller.
+                    route() accetta due parametri: il nome della route, l'id del fumetto.
+                -->
+                <form action="{{route('comics.destroy', ['comic' => $comic->id])}}" method="POST">
+
+                    <!-- per funzionare, il <form> necessita di <csrf> -->
+                    @csrf
+
+                    <!-- per funzionare, il <form> necessita di specificare il metodo <delete> -->
+                    @method('DELETE')
+
+                    <!-- inserire un bottone da cliccare affinché parta l'invio in POST\DELETE -->
+                    <button type="submit">Elimina fumetto</button>
+                </form>
+            </td>
         </tr>
     @endforeach
     

@@ -41,7 +41,7 @@ class ComicsController extends Controller
         // accetta in ingresso (nella variabile $request) i dati provenienti dall'input presente nella view create.
         // salvo in una variabile questi i dati in ingresso (cioè i dati sul fumetto da aggiungere).
 
-        $comicData = $request->all(); // il metodo all serve per prendere tutti i dati presenti nella variabile.
+        $comicData = $request->all(); // il metodo ->all() serve per prendere tutti i dati presenti nella variabile.
 
         $newComic = new Comic(); // istanzio un nuovo oggetto di tipo Model.
 
@@ -128,8 +128,8 @@ class ComicsController extends Controller
 
         if ($chosenComic) {
             // <request> = tutte le modifiche effettuate nei campi <input> nella view <edit> inviate tramite il <form>.
-            // richiamo tutti i campi\valori contenuti nella <request> con la proprietà ->all().
-            // salvo questi campi\valori in una variabile.
+            // richiamo tutti i dati contenuti nella <request> con la proprietà ->all().
+            // salvo questi dati (proprietà->valore) in una variabile.
             // tramite la proprietà ->update() assegno (aggiorno) i valori di ogni proprietà\colonna all'oggetto fumetto.
             // salvo l'oggetto modificato nel database.
             $chosenComicUpdated = $request->all();
