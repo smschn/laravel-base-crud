@@ -51,6 +51,9 @@ class ComicsController extends Controller
                 'series' => 'required|max:100|min:3',
                 'sale_date' => 'required|date',
                 'type' => 'required|max:30|min:3'
+            ],
+            [
+                'sale_date.date' => 'The sale date should be in this format: YYYY-mm-dd.'
             ]
         );
 
@@ -145,6 +148,9 @@ class ComicsController extends Controller
                 'series' => 'required|max:100|min:3',
                 'sale_date' => 'required|date',
                 'type' => 'required|max:30|min:3'
+            ],
+            [
+                'sale_date.date' => 'The sale date should be in this format: YYYY-mm-dd.'
             ]
         );
 

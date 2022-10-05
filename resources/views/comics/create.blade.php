@@ -17,11 +17,14 @@
         @csrf
 
         <!--
-            l'attributo 'name' dei tag input si riferisce al nome della colonna della tabella del database su cui vogliamo salvare questi dati ingresso.
-            l'attributo 'for' dei tag label si lega all'attributo 'id' dei tag input.
-            validazione dati: aggiungo agli <input> un campo <value> con la funzione old():
+            1. l'attributo 'name' dei tag input si riferisce al nome della colonna della tabella del database su cui vogliamo salvare questi dati ingresso.
+            2. l'attributo 'for' dei tag label si lega all'attributo 'id' dei tag input.
+            3. validazione dati: aggiungo agli <input> un campo <value> con la funzione old():
             se fallisce la validazione, si viene riportati alla view create con i campi <input> pre-compilati con i valori (errati) immessi all'invio precedente.
             la funzione old() pre-compila il campo con il vecchio valore inserito in quel campo stesso (tramite il suo parametro).
+            4. errori: qualora fallisca la validazione, con @ error mostro un errore all'utente (funziona quasi come un if).
+            4.1. aggiungo l'attributo class agli input con @ error: qualora ci sia un errore di validazione,
+            viene aggiunta la classe contenuta in esso con il relativo stile css.
         -->
         <label for="title">Titolo:</label>
         <input class="@error('title') color_red @enderror" type="text" id="title" name="title" value='{{old('title')}}' />
