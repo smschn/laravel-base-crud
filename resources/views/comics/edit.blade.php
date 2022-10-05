@@ -30,9 +30,16 @@
         @method('PUT')
 
         <!--
-            l'attributo 'name' dei tag input si riferisce al nome della colonna della tabella del database su cui vogliamo salvare questi dati ingresso.
-            l'attributo 'for' dei tag label si lega all'attributo 'id' dei tag input.
-            nella view <edit> si aggiunge all'<input> l'attributo <value> che pre-compila il campo input con i valori pre-esistenti del fumetto.
+            1. l'attributo 'name' dei tag input si riferisce al nome della colonna della tabella del database su cui vogliamo salvare questi dati ingresso.
+            2. l'attributo 'for' dei tag label si lega all'attributo 'id' dei tag input.
+            3. nella view <edit> si aggiunge all'<input> l'attributo <value> che pre-compila il campo input con i valori pre-esistenti del fumetto.
+            4. errori: qualora fallisca la validazione, con @ error mostro un errore all'utente (funziona quasi come un if).
+            4.1. aggiungo l'attributo class agli input con @ error: qualora ci sia un errore di validazione,
+            viene aggiunta la classe contenuta in esso con il relativo stile css.
+            4.2. modifico la <value> inserendo la funzione old() con due parametri: il 'name' dell'input (cioè il nome della colonna) e il valore dell'oggetto nel database:
+            se la validazione fallisce, la view edit si ricarica e i campi input si pre-compilano (in vurtù dei due parametri di old()):
+            - con quanto inserito in precedenza,
+            - oppure, qualora non si fosse inserito\modificato nulla, con il valore ripescato direttamente dal database.
         -->
         <label for="title">Titolo:</label>
         <input class="@error('title') color_red @enderror" type="text" id="title" name="title" value="{{old('title', $chosenComic->title)}}" />

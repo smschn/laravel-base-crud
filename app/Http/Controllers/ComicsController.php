@@ -40,8 +40,8 @@ class ComicsController extends Controller
     {
         // accetta in ingresso (nella variabile $request) i dati provenienti dall'input presente nella view create.
 
-        // effettuo la validazione dei dati in ingresso (vedere documentazione)
-        // le chiavi devono avere lo stesso nome delle colonne
+        // effettuo la validazione dei dati in ingresso (vedere documentazione).
+        // le chiavi devono avere lo stesso nome delle colonne.
         $request->validate(
             [
                 'title' => 'required|max:50|min:3',
@@ -53,7 +53,7 @@ class ComicsController extends Controller
                 'type' => 'required|max:30|min:3'
             ],
             [
-                'sale_date.date' => 'The sale date should be in this format: YYYY-mm-dd.'
+                'sale_date.date' => 'The sale date should be in this format: YYYY-mm-dd.' // specifico il messaggio d'errore per la chiave 'sale_date' relativamente al formato 'date'.
             ]
         );
 
@@ -138,7 +138,8 @@ class ComicsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // effettuo la validazione dei dati in ingresso (vedere documentazione)
+        // effettuo la validazione dei dati in ingresso (vedere documentazione).
+        // le chiavi devono avere lo stesso nome delle colonne.
         $request->validate(
             [
                 'title' => 'required|max:50|min:3',
@@ -150,13 +151,13 @@ class ComicsController extends Controller
                 'type' => 'required|max:30|min:3'
             ],
             [
-                'sale_date.date' => 'The sale date should be in this format: YYYY-mm-dd.'
+                'sale_date.date' => 'The sale date should be in this format: YYYY-mm-dd.' // specifico il messaggio d'errore per la chiave 'sale_date' relativamente al formato 'date'.
             ]
         );
 
         // <update()> accetta due parametri in ingresso: 
         // l'id del fumetto selezionato per la modifica e il fumetto modificato nella view <edit> (inviato tramite il <form>).
-        // cerco il fumetto nel database con il metodo statico <::find()>.
+        // cerco il fumetto nel database con il metodo statico <::find()> e lo assegno ad una variabile.
         $chosenComic = Comic::find($id);
 
         if ($chosenComic) {
