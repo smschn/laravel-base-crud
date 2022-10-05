@@ -41,6 +41,7 @@ class ComicsController extends Controller
         // accetta in ingresso (nella variabile $request) i dati provenienti dall'input presente nella view create.
 
         // effettuo la validazione dei dati in ingresso (vedere documentazione)
+        // le chiavi devono avere lo stesso nome delle colonne
         $request->validate(
             [
                 'title' => 'required|max:50|min:3',

@@ -19,21 +19,66 @@
         <!--
             l'attributo 'name' dei tag input si riferisce al nome della colonna della tabella del database su cui vogliamo salvare questi dati ingresso.
             l'attributo 'for' dei tag label si lega all'attributo 'id' dei tag input.
+            validazione dati: aggiungo agli <input> un campo <value> con la funzione old():
+            se fallisce la validazione, si viene riportati alla view create con i campi <input> pre-compilati con i valori (errati) immessi all'invio precedente.
+            la funzione old() pre-compila il campo con il vecchio valore inserito in quel campo stesso (tramite il suo parametro).
         -->
         <label for="title">Titolo:</label>
-        <input type="text" id="title" name="title" />
+        <input class="@error('title') color_red @enderror" type="text" id="title" name="title" value='{{old('title')}}' />
+        @error('title')
+            <p>
+                {{$message}}
+            </p>
+        @enderror
+
         <label for="description">Descrizione:</label>
-        <input type="text" id="description" name="description" />
+        <input class="@error('description') color_red @enderror" type="text" id="description" name="description" value='{{old('description')}}' />
+        @error('description')
+            <p>
+                {{$message}}
+            </p>
+        @enderror
+
         <label for="url">Url cover:</label>
-        <input type="text" id="url" name="thumb" />
+        <input class="@error('thumb') color_red @enderror" type="text" id="url" name="thumb" value='{{old('thumb')}}' />
+        @error('thumb')
+            <p>
+                {{$message}}
+            </p>
+        @enderror
+
         <label for="price">Prezzo:</label>
-        <input type="text" id="price" name="price" />
+        <input class="@error('price') color_red @enderror" type="text" id="price" name="price" value='{{old('price')}}' />
+        @error('price')
+            <p>
+                {{$message}}
+            </p>
+        @enderror
+
         <label for="series">Serie:</label>
-        <input type="text" id="series" name="series" />
+        <input class="@error('series') color_red @enderror" type="text" id="series" name="series" value='{{old('series')}}' />
+        @error('series')
+            <p>
+                {{$message}}
+            </p>
+        @enderror
+
         <label for="date">Data pubblicazione:</label>
-        <input type="text" id="date" name="sale_date" />
+        <input class="@error('sale_date') color_red @enderror" type="text" id="date" name="sale_date" value='{{old('sale_date')}}' />
+        @error('sale_date')
+            <p>
+                {{$message}}
+            </p>
+        @enderror
+
         <label for="type">Tipologia:</label>
-        <input type="text" id="type" name="type" />
+        <input class="@error('type') color_red @enderror" type="text" id="type" name="type" value='{{old('type')}}' />
+        @error('type')
+            <p>
+                {{$message}}
+            </p>
+        @enderror
+
         <button type="submit">Crea il nuovo fumetto</button>
 
     </form>
@@ -43,6 +88,17 @@
         input {
             display: block;
         }
+
+        .color_red {
+            border: 1px solid red;
+            color: red;
+        }
+
+        p {
+            color: red;
+        }
+
+
         button {
             margin-top: 10px;
         }
