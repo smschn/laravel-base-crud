@@ -35,19 +35,61 @@
             nella view <edit> si aggiunge all'<input> l'attributo <value> che pre-compila il campo input con i valori pre-esistenti del fumetto.
         -->
         <label for="title">Titolo:</label>
-        <input type="text" id="title" name="title" value="{{$chosenComic->title}}" />
+        <input class="@error('title') color_red @enderror" type="text" id="title" name="title" value="{{old('title', $chosenComic->title)}}" />
+        @error('title')
+            <p>
+                {{$message}}
+            </p>
+        @enderror
+
         <label for="description">Descrizione:</label>
-        <input type="text" id="description" name="" value="{{$chosenComic->description}}" />
+        <input class="@error('description') color_red @enderror" type="text" id="description" name="" value="{{old('description', $chosenComic->description)}}" />
+        @error('description')
+            <p>
+                {{$message}}
+            </p>
+        @enderror
+
         <label for="url">Url cover:</label>
-        <input type="text" id="url" name="thumb" value="{{$chosenComic->thumb}}" />
+        <input class="@error('thumb') color_red @enderror" type="text" id="url" name="thumb" value="{{old('thumb', $chosenComic->thumb)}}" />
+        @error('thumb')
+            <p>
+                {{$message}}
+            </p>
+        @enderror
+
         <label for="price">Prezzo:</label>
-        <input type="text" id="price" name="price" value="{{$chosenComic->price}}" />
+        <input class="@error('price') color_red @enderror" type="text" id="price" name="price" value="{{old('price', $chosenComic->price)}}" />
+        @error('price')
+            <p>
+                {{$message}}
+            </p>
+        @enderror
+
         <label for="series">Serie:</label>
-        <input type="text" id="series" name="series" value="{{$chosenComic->series}}" />
+        <input class="@error('series') color_red @enderror" type="text" id="series" name="series" value="{{old('series', $chosenComic->series)}}" />
+        @error('series')
+            <p>
+                {{$message}}
+            </p>
+        @enderror
+
         <label for="date">Data pubblicazione:</label>
-        <input type="text" id="date" name="sale_date" value="{{$chosenComic->sale_date}}" />
+        <input class="@error('sale_date') color_red @enderror" type="text" id="date" name="sale_date" value="{{old('sale_date', $chosenComic->sale_date)}}" />
+        @error('sale_date')
+            <p>
+                {{$message}}
+            </p>
+        @enderror
+
         <label for="type">Tipologia:</label>
-        <input type="text" id="type" name="type" value="{{$chosenComic->type}}" />
+        <input class="@error('type') color_red @enderror" type="text" id="type" name="type" value="{{old('type', $chosenComic->type)}}" />
+        @error('type')
+            <p>
+                {{$message}}
+            </p>
+        @enderror
+
         <button type="submit">Modifica il fumetto</button>
 
     </form>
@@ -56,6 +98,15 @@
     <style>
         input {
             display: block;
+        }
+
+        .color_red {
+            border: 1px solid red;
+            color: red;
+        }
+
+        p {
+            color: red;
         }
         button {
             margin-top: 10px;
