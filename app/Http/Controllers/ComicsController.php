@@ -39,8 +39,21 @@ class ComicsController extends Controller
     public function store(Request $request)
     {
         // accetta in ingresso (nella variabile $request) i dati provenienti dall'input presente nella view create.
-        // salvo in una variabile questi i dati in ingresso (cioè i dati sul fumetto da aggiungere).
 
+        // effettuo la validazione dei dati in ingresso (vedere documentazione)
+        $request->validate(
+            [
+                'title' => 'required|max:50|min:3',
+                'description' => 'nullable|max:65535',
+                'thumb' => 'required|max:255|url',
+                'price' => 'required|numeric|min:0',
+                'series' => 'required|max:100|min:3',
+                'sale_date' => 'required|date',
+                'type' => 'required|max:30|min:3'
+            ]
+        );
+
+        // salvo in una variabile questi i dati in ingresso (cioè i dati sul fumetto da aggiungere).
         $comicData = $request->all(); // il metodo ->all() serve per prendere tutti i dati presenti nella variabile.
 
         $newComic = new Comic(); // istanzio un nuovo oggetto di tipo Model.
@@ -121,6 +134,19 @@ class ComicsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // effettuo la validazione dei dati in ingresso (vedere documentazione)
+        $request->validate(
+            [
+                'title' => 'required|max:50|min:3',
+                'description' => 'nullable|max:65535',
+                'thumb' => 'required|max:255|url',
+                'price' => 'required|numeric|min:0',
+                'series' => 'required|max:100|min:3',
+                'sale_date' => 'required|date',
+                'type' => 'required|max:30|min:3'
+            ]
+        );
+
         // <update()> accetta due parametri in ingresso: 
         // l'id del fumetto selezionato per la modifica e il fumetto modificato nella view <edit> (inviato tramite il <form>).
         // cerco il fumetto nel database con il metodo statico <::find()>.

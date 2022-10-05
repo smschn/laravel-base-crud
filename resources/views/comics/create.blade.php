@@ -23,7 +23,7 @@
         <label for="title">Titolo:</label>
         <input type="text" id="title" name="title" />
         <label for="description">Descrizione:</label>
-        <input type="text" id="description" name="" />
+        <input type="text" id="description" name="description" />
         <label for="url">Url cover:</label>
         <input type="text" id="url" name="thumb" />
         <label for="price">Prezzo:</label>
