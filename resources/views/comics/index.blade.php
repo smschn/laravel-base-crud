@@ -9,6 +9,17 @@
     <!-- aggiungo un link alla view 'create', al cui interno ci sarà un form da completare per la creazione di un nuovo fumetto -->
     <h2>>> <a href="{{route('comics.create')}}">Vai alla view 'CREATE' per creare un nuovo fumetto.</a> <<</h2>
     
+    <!--
+        aggiungo (per l'utente) un messaggio della corretta cancellazione del fumetto.
+        funziona in sincronia con la funzione ->with() nella destroy() del resources controller:
+        'status' è una variabile che si lega al messaggio della ->with() e lo stampa a schermo attraverso session('status').
+    -->
+    @if (session('status'))
+        <p>
+            {{session('status')}}
+        </p>
+    @endif
+
     <!-- creo una tabella dove stampare i fumetti con un ciclo -->
     <table>
 
@@ -62,5 +73,14 @@
     @endforeach
     
     </table>
+
+    <style>
+        p {
+            display: inline-block;
+            color: #fff;
+            background-color: lightseagreen;
+            padding: 10px;
+        }
+    </style>
 
 @endsection

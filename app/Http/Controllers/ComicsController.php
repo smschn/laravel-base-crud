@@ -172,7 +172,8 @@ class ComicsController extends Controller
 
             // si fa una return di un redirect perché la funzione update() viene chiamata con un metodo POST (dal <form> nella view <edit>):
             // il client (browser), di default, non si aspetta una risposta da questa funzione.
-            return redirect()->route('comics.show', ['comic' => $chosenComic->id]);
+            // il metodo ->with() permette di visualizzare un messaggio se esso viene richiamato nella view show attraverso <@ if e session('status')>.
+            return redirect()->route('comics.show', ['comic' => $chosenComic->id])->with('status', 'Fumetto modificato correttamente.');
         }
 
         // se il fumetto non esiste nel database, mostra la pagina di errore 404 attraverso la funzione <abort()>
@@ -195,10 +196,12 @@ class ComicsController extends Controller
         $chosenComic = Comic::find($id);
 
         // se il fumetto esiste nel database, lo cancello grazie alla metodo ->delete().
-        // essendo destroy() una funzione eseguita alla ricezione di dati tramite metodo POST, nella return imposto un redirect alla view <index> (altrimenti avrei una pagina bianca)
+        // essendo destroy() una funzione eseguita alla ricezione di dati tramite metodo POST,
+        // nella return imposto un redirect alla view <index> (altrimenti avrei una pagina bianca).
+        // il metodo ->with() permette di visualizzare un messaggio se esso viene richiamato nella view index attraverso <@ if e session('status')>.
         if ($chosenComic) {
             $chosenComic->delete();
-            return redirect()->route('comics.index');
+            return redirect()->route('comics.index')->with('status', 'Fumetto cancellato correttamente.');
         }
 
         // se il fumetto non esiste nel database, mostra la pagina di errore 404 attraverso la funzione <abort()>

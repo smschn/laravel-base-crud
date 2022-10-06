@@ -6,6 +6,17 @@
 
     <h1>Ti trovi nella pagina SHOW: qui viene visualizzato il singolo fumetto, grazie ad un URL\URI dinamico.</h1>
 
+    <!--
+        aggiungo (per l'utente) un messaggio della corretta modifica del fumetto.
+        funziona in sincronia con la funzione ->with() nella update() del resources controller.
+        'status' è una variabile che si lega al messaggio della ->with() e lo stampa a schermo attraverso session('status').
+    -->
+    @if (session('status'))
+        <p>
+            {{session('status')}}
+        </p>
+    @endif
+
     <!-- creo una tabella per visualizzare i dati -->
     <table>
 
@@ -26,5 +37,14 @@
         </tr>
 
     </table>
+
+    <style>
+        p {
+            display: inline-block;
+            color: #fff;
+            background-color: lightseagreen;
+            padding: 10px;
+        }
+    </style>
         
 @endsection
